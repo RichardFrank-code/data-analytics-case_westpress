@@ -1,76 +1,110 @@
-# R# Requirements – Stakeholder-Chat
+# Requirements – Stakeholder-Chat
 
 ## Ziel des Gesprächs
-Die Anforderungen für einen **automatisierten, regelmäßigen Performance-Report** zu Stellenanzeigen erfassen,
-inkl. Datenquellen, KPIs, Empfänger:innen, Frequenz und aktueller Entscheidungsgrundlage.
+Die Anforderungen für einen **monatlich aktualisierbaren Kunden-Performance-Report** erfassen, der dem Account Manager ermöglicht, Kunden nach Relevanz zu priorisieren und Inaktivität zu erkennen.
 
-## Kontext (aus Aufgabe)
-- Abteilung bevorzugt **automatisierte Berichte** (statt manueller Analysen)
-- Datenquellen: `Umsatzdaten.xlsx` + `Trackingdaten.xlsx`
-- Ziel: Ableitung von Insights für optimierte Entscheidungen im Anzeigen-Management
-- Präsentation der Ergebnisse: **Freitag 15:00 Uhr**
-
----
-
-## Leitfragen (duzen)
-
-### 1) Ziel & Entscheidung
-- Was möchtest du mit dem Report entscheiden?
-- Wer nutzt den Report (Zielgruppe)?
-- Welche Entscheidungen beeinflusst der Report? (Budget, Laufzeit, Kanalwahl)
-
-### 2) KPIs (Definitionen explizit fixieren)
-- Primäre KPIs: Umsatz, Klicks, Bewerbungen, Conversion Rate, **Cost per Application (CPA)**, **Preis/Leistung**
-- Wie definieren wir „Bewerbung“ genau? (Event? Status?)
-- Gibt es interne Zielwerte / Benchmark-Grenzen?
-
-### 3) Dimensionen / Segmentierung
-- Nach welchen Achsen willst du vergleichen?
-  (Job-Typ/Branche, Stellenbörse, Kunde, Zeitraum, Region, Kampagne…)
-- **Soll es Drilldowns geben?** (z. B. von Gesamt → Kunde → Anzeige)
-
-### 4) Frequenz & Automatisierung
-- Wie oft soll der Report aktualisiert werden? (täglich / wöchentlich / monatlich)
-- In welchem Format willst du ihn konsumieren? (Dashboard, Excel, PDF)
-- Sollen Benachrichtigungen / Alerts bei Auffälligkeiten gesendet werden?
-
-### 5) Datenquellen & Join
-- Wie werden Umsatz- und Trackingdaten verknüpft? (gemeinsamer Schlüssel?)
-- Gibt es Datenpunkte, die aktuell fehlen oder manuell ergänzt werden müssen?
-- **Wie groß ist der zeitliche Verzug der Daten?** (z. B. Reporting-Day + 1)
-
-### 6) Klassifikation Job/Branche
-- Welche Kategorien oder Taxonomien sollen verwendet werden?
-- Gibt es bestehende Zuordnungen / Vorlagen?
-
-### 7) Leistungsbewertung / Score (Reporting-Logik)
-- Woran erkennst du eine „gute“ Anzeige?
-  (z. B. Bewerbungen >= X, CPA <= Y, ROI >= Z)
-- **Soll es eine Ampel- oder Score-Darstellung geben?**
-
-### 8) Akzeptanzkriterien (Definition of Done)
-- Was muss enthalten sein, damit der Report für dich „fertig und produktiv nutzbar“ ist?
-- Was wäre „Nice to Have“, aber nicht notwendig?
+## Kontext (aus Aufgabenstellung)
+- Es handelt sich um einen Probe-Case.
+- Stakeholder erwartet einen **automatisierten / regelmäßig nutzbaren Report**.
+- Datenquellen: `Umsatzdaten.xlsx` (und optional Trackingdaten).
+- Ergebnispräsentation: Freitag um 15:00 Uhr.
 
 ---
 
-## Gesprächsnotizen (werden während des Chats ergänzt)
+## Anforderungen aus dem Stakeholder-Gespräch
 
-- **[YYYY-MM-DD HH:MM] Du:** …
-- **[YYYY-MM-DD HH:MM] Stakeholder:** …
-- **Kurzfassung:** …
+### 🎯 Ziel
+Der Account Manager möchte auf einen Blick sehen:
+
+- Welche Kunden zuletzt gekauft haben
+- Welche Kunden aktiv vs. inaktiv sind (seit X Tagen kein Kauf)
+- Welche Kunden priorisiert kontaktiert werden sollten
+
+> Fokus: **Betreuung effizient priorisieren**
 
 ---
 
-## Zusammenfassung der Anforderungen (nach dem Chat)
+### 📊 KPIs (vom Stakeholder bestätigt)
 
-| Kategorie | Ergebnis |
-|----------|----------|
-| Ziel | … |
-| KPIs | … |
-| Segmente | … |
-| Frequenz | … |
-| Format | … |
-| Definition of Done | … |
-| Offene Punkte | … |
+| KPI | Beschreibung |
+|------|-------------|
+| letzter Kaufzeitpunkt | wann der Kunde zuletzt gekauft hat |
+| Anzahl der Aufträge | wie oft der Kunde im Zeitraum gekauft hat |
+| Umsatz | Summe der Käufe im Zeitraum |
+| Ranking | Sortierung der Kunden (Top → Low) |
+| Inaktivitätsflag | „kein Kauf seit > X Tagen“ |
 
+---
+
+### 🗂 Output-Spalten (vom Stakeholder wörtlich genannt)
+
+| Spalte | Bedeutung |
+|--------|-----------|
+| **Datum** | Kaufdatum |
+| **Kunde** | Kundenname |
+| **Produkt** | gekaufte Leistung / Produkt |
+| **Umsatz** | Betrag des Kaufs |
+
+> Auf Basis dieser Spalten werden die KPIs (Ranking etc.) berechnet.
+
+---
+
+### 📅 Zeitraum / Scope / Darstellung
+
+| Kategorie | Entscheidung / Einschränkung |
+|----------|------------------------------|
+| Zeitraum | **letzte 12 Monate (rolling)** |
+| Kundenscope | **nur Kunden des Account Managers** |
+| Segmentierung | keine Gruppierung notwendig (einfache Liste reicht) |
+| Darstellung | einfache Tabelle + Ranking |
+| Visualisierung | nicht erforderlich / optional später |
+
+---
+
+### 📁 Format / Output
+
+| Output | Details |
+|--------|---------|
+| ✅ Excel Datei | monatlich aktualisierbar, als Ergebnis für den Stakeholder |
+| ➕ optional (future) | Power BI Self-Service Dashboard für Automatisierung |
+
+> Visualisierung ist **nicht entscheidend** – wichtiger sind korrekte KPIs und Logik.  
+> Visualisierung = Transportmittel.
+
+---
+
+### 🔌 Datenquelle / technische Rahmenbedingungen
+
+- Daten stammen aus dem **ERP-System**.
+- Export erfolgt **monatlich als Excel/CSV**.
+- **Kein direkter Zugriff** auf ERP/DB für Analysten.
+- Aktualisierung erfolgt durch **Ersetzen der Exportdatei**.
+- Report wird so aufgebaut, dass alle Berechnungen **automatisch aktualisiert** werden (Power Query / Power BI / Excel Automations).
+- Für später wäre eine direkte Datenanbindung (z. B. BI / API / Datenbank) sinnvoll, aber **nicht Teil des aktuellen Scopes**.
+
+---
+
+### ✅ Definition of Done
+
+Der Report gilt als „fertig“, wenn:
+
+- Excel enthält alle relevanten Kunden (nur Kunden des AM)
+- Zeitraum = letzte 12 Monate
+- KPIs:
+  - letzter Kaufzeitpunkt
+  - Anzahl Aufträge
+  - Umsatz
+  - Ranking
+  - Inaktivitätsflag
+- Datei kann **monatlich aktualisiert werden, ohne dass Formeln neu gebaut werden müssen**
+
+---
+
+### 🔁 Iterative Zusammenarbeit
+
+- Stakeholder kann nach dem ersten Ergebnis zusätzliche Anforderungen einbringen.
+- Follow-up nach erster Version eingeplant.
+
+> „Wenn du magst, kann ich dir die Spalten später nochmal genau aufschreiben.“
+
+---
