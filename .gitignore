@@ -1,0 +1,17 @@
+# Ignore data files NEVER push raw data
+/data/*
+*.xlsx
+*.csv
+*.parquet
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db

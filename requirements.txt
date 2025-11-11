@@ -1,0 +1,17 @@
+# Core Data & Analysis
+pandas
+numpy
+
+# Excel Support
+openpyxl
+pyarrow
+
+# Visualization (falls du Diagramme in Jupyter brauchst)
+matplotlib
+
+# Notebook/Development
+jupyter
+ipykernel
+
+# Optional (falls VS Code / Jupyter Kernel Schwierigkeiten macht)
+dash
