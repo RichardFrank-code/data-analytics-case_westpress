@@ -4,6 +4,12 @@
 *.csv
 *.parquet
 
+# Power BI files
+*.pbix
+*.pbit
+*.pbix.RESTORE
+~$*.pbix
+
 # Virtual environments
 .venv/
 venv/
