@@ -1,114 +1,111 @@
-# 📊 Data Analytics Case – Westpress  
-Automatisierter Kundenreport & Performance-Dashboard
+# 📦 Data Analytics Case – Automatisierter Kundenreport
 
-Dieses Repository enthält die vollständige Umsetzung des Westpress Analytics-Cases:
-
-✔ Anforderungen mit Stakeholder aufgenommen  
-✔ Daten bereinigt (Python ETL)  
-✔ Star-Schema erstellt  
-✔ Power BI Backend gebaut  
-✔ Management-Dashboard + Kundenreport erstellt  
-✔ Präsentation finalisiert  
+Dieses Projekt demonstriert die Entwicklung eines vollständigen Data-Analytics-Prozesses zur Automatisierung eines kundenbezogenen Reporting-Workflows.
+Umgesetzt wurden ein Power-BI-Management-Dashboard, ein automatisierter Excel-Kundenreport sowie eine Python-ETL-Pipeline zur Bereinigung und Modellierung der Umsatz- und Trackingdaten.
+Die Ergebnisse wurden zusätzlich in einer kompakten Fallstudien-Präsentation dokumentiert.
 
 ---
 
 ## 🚀 Setup (lokale Entwicklung)
 
+### Repository klonen
 ```bash
 git clone <repo-url>
 cd <repo-name>
+```
+
+### Virtuelle Umgebung erstellen
+```bash
 python -m venv .venv
+```
+
+### venv aktivieren
+```bash
 .\.venv\Scripts\activate   # Windows
+source .venv/bin/activate # Mac/Linux
+```
+
+### Dependencies installieren
+```bash
 pip install -r requirements.txt
-🗂 Projektstruktur
-powershell
-Code kopieren
+```
+
+---
+
+## 🗂 Projektstruktur
+
+```text
 .
 ├── docs/
-│   ├── requirements.md        # Stakeholder-Anforderungen (WHAT)
-│   ├── concept.md             # Architektur & ETL-Konzept (HOW)
-│   └── timeplan.md            # Vorgehen / Planung
+│   ├── requirements.md
+│   ├── concept.md
+│   └── timeplan.md
 │
 ├── notebooks/
-│   └── 01_EDA_umsatz_tracking.ipynb   # Exploration / Prototyping
+│   └── 01_EDA_umsatz_tracking.ipynb
 │
 ├── src/
-│   └── etl_clean_sales_tracking.py    # finaler ETL Pipeline
+│   └── etl_clean_sales_tracking.py
 │
-├── data/                               # lokale Daten (NICHT im Repo)
+├── data/                # nicht im Repo!
 │   ├── Umsatzdaten.xlsx
 │   └── Trackingdaten.xlsx
 │
 ├── .gitignore
 ├── requirements.txt
-├── Westpress Data Case – Analyse & Reporting.pptx
 └── README.md
+```
+
+---
+
+## 🧱 Architektur (Kurzfassung)
+
+Die Lösung basiert auf einer durchgängigen Datenpipeline von der Rohdatenbereitstellung bis zum finalen Kundenreport:
+
+**ERP-Export (Excel/CSV) → Power-BI-Backend (Model, DAX, Refresh) → Automatisierter Excel-Output für Stakeholder**
+
+**Power-BI-Modell:**
+- Aufbau eines **Star Schemas**
+- **Faktentabellen:**
+  - *Sales* (Umsatz)
+  - *Tracking* (Aktivitäts- & Nutzungsdaten)
+- **Dimensionstabellen:**
+  - *Date*
+  - *Customer*
+  - *JobFamily*
+
+**Automatisierung:**
+- Regelmäßige Aktualisierung über **Power BI Refresh**
+- Berechnung der Kennzahlen via **DAX**
+- Export in Excel als standardisierter Kundenreport
+
+---
+
 ## 🔒 Data Governance
-Die Originaldaten werden nicht versioniert.
-.gitignore schließt folgende Dateien vollständig aus:
 
-/data/*
+- Keine sensiblen Rohdaten im Repository
+- `.gitignore` blockiert `/data/*` sowie `.xlsx` und `.csv`
+- Versioniert werden ausschließlich:
+  - Code (Python, DAX, ETL)
+  - Dokumentation
+  - Modell- und Reportdefinitionen
 
-*.xlsx
+---
 
-*.csv
+## 📊 Features & Ergebnis
 
-*.parquet
+- Management-Dashboard (KPIs, Visuals, Kostenübersichten)
+- Automatisierter Excel-Kundenreport über Power BI Backend
+- Parametrisierung zur *Inaktivitätstage-Prognose*
+- Ranking-, Status- & Ampellogiken für Kundensegmente
+- Verknüpfung von Tracking- und Umsatzdaten für ganzheitliche Analysen
+- Durchgängiger automatisierter Analytics-Workflow
 
-Versioniert werden ausschließlich:
+---
 
-ETL-/Analyseskripte
+## 📌 Status
 
-Dokumentation (/docs)
-
-Jupyter Notebook ohne Daten
-
-## Präsentation
-
-🏗 Lösungskonzept (Kurzfassung)
-1. ERP-Export (Excel)
-→ monatlich durch das Unternehmen
-
-2. Python ETL
-
-Datumsfehler korrigiert
-
-Strings bereinigt
-
-Keyword-basierte Job-Family-Klassifikation
-
-Star-Schema generiert (Facts / Date / Customer / JobFamily)
-
-3. Power BI Backend
-
-Datenmodell aufgebaut
-
-Measures definiert
-
-Dashboards erstellt
-
-4. Output
-
-Interaktive Power BI Dashboards
-
-Exportierbare Excel-Reports
-
-Präsentation der Insights
-
-## 📊 Final Deliverables
-🟦 Management Dashboard
-
-🟩 Stakeholder-Kundenreport
-
-📝 Präsentation „Analyse & Reporting“
-
-🧪 Python ETL (vollständig reproduzierbar)
-
-✅ Projektstatus
-✔ Anforderungen abgeschlossen
-✔ ETL finalisiert
-✔ Datenmodell final
-✔ Dashboards final
-✔ Präsentation final
-
-Das Projekt ist vollständig abgeschlossen und reproduzierbar.
+- ✔ Anforderungen aufgenommen
+- ✔ Datenmodell gebaut
+- ✔ Reports erstellt
+- ✔ Präsentation finalisiert
