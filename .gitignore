@@ -1,23 +1,23 @@
-# # Ignore data files NEVER push raw data
+# Ignore data files NEVER push raw data
 # /data/*
 # *.xlsx
 # *.csv
 # *.parquet
 
-# # Power BI files
+# Power BI files
 # *.pbix
 # *.pbit
 # *.pbix.RESTORE
 # ~$*.pbix
 
-# # Virtual environments
-# .venv/
-# venv/
-# ENV/
+# Virtual environments
+.venv/
+venv/
+ENV/
 
-# # Jupyter checkpoints
+# Jupyter checkpoints
 # .ipynb_checkpoints/
 
-# # System files
+# System files
 # .DS_Store
 # Thumbs.db
